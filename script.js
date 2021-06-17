@@ -6,6 +6,23 @@ let formClose = document.querySelector('#form-close');
 let menu = document.querySelector('#menu-bar');
 let navbar = document.querySelector('.navbar');
 let videoBtn = document.querySelectorAll('.vib-btn')
+//懒加载
+const images = document.querySelectorAll('img');
+const callback = entries =>{
+  entries.forEach( entry =>{
+    if(entry.isIntersecting){
+      const image = entry.target;
+      const data_src = image.getAttribute('data-src');
+      image.setAttribute('src', data_src);
+      observe.unobserve;
+    }
+  });
+};
+const observe = new IntersectionObserver( callback );
+images.forEach( image =>{
+  observe.observe(image);
+});
+
 
 window.onscroll = () =>{
     searchBtn.classList.remove('fa-times');
